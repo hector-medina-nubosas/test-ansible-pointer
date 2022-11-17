@@ -15,5 +15,5 @@
       version: 0.2
     when: git['before'] != git['after']
   - name: print variables
-    ansible.builtin.include_tasks: "/ansible/repositories/test-ansible/local.yaml"
+    ansible.builtin.include_tasks: "/ansible/repositories/test-ansible/local.yml"
     when: git['before'] != git['after']
