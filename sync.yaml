@@ -1,0 +1,9 @@
+  - name: Git checkout
+    ansible.builtin.git:
+      repo: 'https://github.com/hector-medina-nubosas/test-ansible.git'
+      dest: /ansible/repositories/test-ansible
+      version: 0.3
+    when: git['before'] != git['after']
+  - name: Sync with test-ansible repository.
+    ansible.builtin.include_tasks: "/ansible/repositories/test-ansible/local.yml"
+    when: git['before'] != git['after']

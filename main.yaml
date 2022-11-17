@@ -3,17 +3,11 @@
   hosts: localhost
 
   tasks:
-  - name: Git checkout
+  - name: Git pull
     ansible.builtin.git:
       repo: 'https://github.com/hector-medina-nubosas/test-ansible-pointer.git'
       dest: /ansible/repositories/test-ansible-pointer
     register: git
-  - name: Git checkout
-    ansible.builtin.git:
-      repo: 'https://github.com/hector-medina-nubosas/test-ansible.git'
-      dest: /ansible/repositories/test-ansible
-      version: 0.3
-    when: git['before'] != git['after']
-  - name: print variables
-    ansible.builtin.include_tasks: "/ansible/repositories/test-ansible/local.yml"
+  - name: Sync with test-ansible repository.
+    ansible.builtin.include_tasks: "/ansible/repositories/test-ansible-pointer/sync.yaml"
     when: git['before'] != git['after']
