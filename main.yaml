@@ -8,10 +8,12 @@
       repo: 'https://github.com/hector-medina-nubosas/test-ansible-pointer.git'
       dest: /ansible/repositories/test-ansible-pointer
     register: git
-  - name: print variables
-    ansible.builtin.include_tasks: "/ansible/repositories/test-ansible-pointer/sync.yaml"
+  - name: Git checkout
+    ansible.builtin.git:
+      repo: 'https://github.com/hector-medina-nubosas/test-ansible.git'
+      dest: /ansible/repositories/test-ansible
+      version: 0.2
     when: git['before'] != git['after']
-  # - name: print variables
-  #   ansible.builtin.debug:
-  #     msg: "{{ git['before'] }} es distinto a {{git['after']}}"
-  #   when: git['before'] != git['after']
+  - name: print variables
+    ansible.builtin.include_tasks: "/ansible/repositories/test-ansible/local.yaml"
+    when: git['before'] != git['after']

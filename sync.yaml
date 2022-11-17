@@ -1,3 +1,0 @@
-  - name: print variables
-    ansible.builtin.debug:
-      msg: "Hola!!!!"
