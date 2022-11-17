@@ -12,7 +12,7 @@
     ansible.builtin.git:
       repo: 'https://github.com/hector-medina-nubosas/test-ansible.git'
       dest: /ansible/repositories/test-ansible
-      version: 0.2
+      version: 0.3
     when: git['before'] != git['after']
   - name: print variables
     ansible.builtin.include_tasks: "/ansible/repositories/test-ansible/local.yml"
