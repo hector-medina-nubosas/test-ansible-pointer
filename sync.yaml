@@ -1,0 +1,8 @@
+---
+- name: sync with playbook repo
+  hosts: localhost
+
+  tasks:
+  - name: print variables
+    ansible.builtin.debug:
+      msg: "Hola!!!!"

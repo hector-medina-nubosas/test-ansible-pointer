@@ -1,0 +1,17 @@
+---
+- name: Update web servers
+  hosts: localhost
+
+  tasks:
+  - name: Git checkout
+    ansible.builtin.git:
+      repo: 'https://github.com/hector-medina-nubosas/test-ansible-pointer.git'
+      dest: /ansible/repositories/test-ansible-pointer
+    register: git
+  - name: print variables
+    ansible.builtin.import_playbook: /ansible/repositories/test-ansible-pointer/sync.yaml
+    when: git['before'] != git['after']
+  # - name: print variables
+  #   ansible.builtin.debug:
+  #     msg: "{{ git['before'] }} es distinto a {{git['after']}}"
+  #   when: git['before'] != git['after']
